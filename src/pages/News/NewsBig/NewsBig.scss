@@ -1,0 +1,140 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.big1 {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(236, 233, 233); 
+    padding-bottom: 30px;
+    margin:20px ;
+}
+.img1 {
+    width: 4800px;
+    position: relative; // Đảm bảo phần tử cha có position: relative
+    overflow: hidden;
+        .overlay {
+            position: absolute; // Định vị overlay tuyệt đối
+            top: 20px;             // Cạnh trên bằng 0
+            right: 30px ;          // Cạnh phải bằng 0
+            bottom: 20px;         // Cạnh dưới bằng 0
+            left: 30px;           // Cạnh trái bằng 0
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5); // Nền màu đen với 50% độ trong suốt
+            opacity: 0;        // Mặc định ẩn đi
+            transition: opacity 0.5s ease, transform 0.5s ease; // Thêm hiệu ứng chuyển đổi
+            transform: scale(1.1); // Bắt đầu với kích thước 0
+        }
+    
+        &:hover .overlay {
+            opacity: 1;        // Hiện overlay khi hover
+            transform: scale(1); // Đặt lại kích thước về 1 khi hover
+        }
+        .contentImg{
+            position: absolute; // Định vị overlay tuyệt đối
+            top: 0;             //  Cạnh trên bằng 0
+            right: 0;          // Cạnh phải bằng 0
+            bottom: 0;         // Cạnh dưới bằng 0
+            left: 0;           // Cạnh trái bằng 0
+            display: flex;     // Sử dụng flexbox
+            flex-direction: column; // Sắp xếp theo cột
+            justify-content: center; // Căn giữa theo chiều dọc
+            align-items: center; // Căn giữa theo chiều ngang
+            background-color: rgba(0, 0, 0, 0.5); // Nền màu đen với 50% độ trong suốt
+            color: white; // Màu chữ trắng
+            opacity: 0;    // Mặc định ẩn đi
+            transition: opacity 0.5s ease,  transform 0.5s ease; // Hiệu ứng chuyển đổi độ trong suốt
+            transform: scale(1.5);
+            font-size: 25px;
+            font-weight: 700;
+        }
+        &:hover .contentImg {
+            opacity: 1;        // Hiện overlay khi hover
+            transform: scale(1); // Đặt lại kích thước về 1 khi hover
+        }
+}
+
+.content {
+    margin-left: 30px;
+}
+.content a h1 {
+    font-size: 35px;
+    font-weight: 500;
+}
+.content h1:hover {
+    color: #0056b3;
+} 
+.content p {
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+// big2 
+.big2 {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(236, 233, 233); 
+    padding-bottom: 30px;
+    margin:20px ;
+
+        .img2 {
+            width: 4600px;
+            position: relative; // Đảm bảo phần tử cha có position: relative
+            overflow: hidden;
+            margin-left: 20px;
+            .overlay {
+            position: absolute; // Định vị overlay tuyệt đối
+            top: 20px;             // Cạnh trên bằng 0
+            right: 30px ;          // Cạnh phải bằng 0
+            bottom: 20px;         // Cạnh dưới bằng 0
+            left: 30px;           // Cạnh trái bằng 0
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5); // Nền màu đen với 50% độ trong suốt
+            opacity: 0;        // Mặc định ẩn đi
+            transition: opacity 0.5s ease, transform 0.5s ease; // Thêm hiệu ứng chuyển đổi
+            transform: scale(1.1); // Bắt đầu với kích thước 0
+        }
+    
+        &:hover .overlay {
+            opacity: 1;        // Hiện overlay khi hover
+            transform: scale(1); // Đặt lại kích thước về 1 khi hover
+        }
+        .contentImg{
+            position: absolute; // Định vị overlay tuyệt đối
+            top: 0;             // Cạnh trên bằng 0
+            right: 0;          // Cạnh phải bằng 0
+            bottom: 0;         // Cạnh dưới bằng 0
+            left: 0;           // Cạnh trái bằng 0
+            display: flex;     // Sử dụng flexbox
+            flex-direction: column; // Sắp xếp theo cột
+            justify-content: center; // Căn giữa theo chiều dọc
+            align-items: center; // Căn giữa theo chiều ngang
+            background-color: rgba(0, 0, 0, 0.5); // Nền màu đen với 50% độ trong suốt
+            color: white; // Màu chữ trắng
+            opacity: 0;    // Mặc định ẩn đi
+            transition: opacity 0.5s ease,  transform 0.5s ease; // Hiệu ứng chuyển đổi độ trong suốt
+            transform: scale(1.5);
+            font-size: 25px;
+            font-weight: 700;
+        }
+        &:hover .contentImg {
+            opacity: 1;        // Hiện overlay khi hover
+            transform: scale(1); // Đặt lại kích thước về 1 khi hover
+        }
+            
+            
+        }
+        .content1 a h1 {
+            font-size: 35px;
+            font-weight: 500;
+        }
+        .content1 h1:hover {
+            color: #0056b3;
+        } 
+        .content1 p {
+            margin-top: 15px;
+            font-weight: 300;
+            width: 100%;
+        }
+}
