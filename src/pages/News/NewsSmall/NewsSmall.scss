@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.small {
+    display: flex;
+    
+    a h1 {
+        margin: 10px;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    h1:hover {
+        color: #0056b3;
+    }
+    p {
+        
+        margin: 10px;
+        font-size: 17px;
+        opacity: 0.3;
+    }
+
+}
+.img3 {
+    
+    position: relative; // Đảm bảo phần tử cha có position: relative
+    overflow: hidden;
+    img {
+        width: 90%;
+        margin: auto;
+    }
+    .overlay {
+        margin: 20px;
+        position: absolute; // Định vị overlay tuyệt đối
+        top: 20px;             // Cạnh trên bằng 0
+        right: 30px ;          // Cạnh phải bằng 0
+        bottom: 20px;         // Cạnh dưới bằng 0
+        left: 30px;           // Cạnh trái bằng 0
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.5); // Nền màu đen với 50% độ trong suốt
+        opacity: 0;        // Mặc định ẩn đi
+        transition: opacity 0.5s ease, transform 0.5s ease; // Thêm hiệu ứng chuyển đổi
+        transform: scale(1.1); // Bắt đầu với kích thước 0
+    }
+
+    &:hover .overlay {
+        opacity: 1;        // Hiện overlay khi hover
+        top: 0;             //  Cạnh trên bằng 0
+        right: 0;          // Cạnh phải bằng 0
+        bottom: 0;         // Cạnh dưới bằng 0
+        left: 0;
+        transform: scale(1); // Đặt lại kích thước về 1 khi hover
+    }
+    .contentImg{
+        position: absolute; // Định vị overlay tuyệt đối
+        top: 0;             //  Cạnh trên bằng 0
+        right: 17px;          // Cạnh phải bằng 0
+        bottom: 0;         // Cạnh dưới bằng 0
+        left: 17px;           // Cạnh trái bằng 0
+        display: flex;     // Sử dụng flexbox
+        flex-direction: column; // Sắp xếp theo cột
+        justify-content: center; // Căn giữa theo chiều dọc
+        align-items: center; // Căn giữa theo chiều ngang
+        background-color: rgba(0, 0, 0, 0.5); // Nền màu đen với 50% độ trong suốt
+        color: white; // Màu chữ trắng
+        opacity: 0;    // Mặc định ẩn đi
+        transition: opacity 0.5s ease,  transform 0.5s ease; // Hiệu ứng chuyển đổi độ trong suốt
+        transform: scale(1.5);
+        font-size: 25px;
+        font-weight: 700;
+    }
+    &:hover .contentImg {
+        opacity: 1;        // Hiện overlay khi hover
+        transform: scale(1); // Đặt lại kích thước về 1 khi hover
+    }
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+    ul {
+        display: flex;
+    }
+    a {
+        padding: 10px 15px;
+        margin: 0 5px;
+        text-decoration: none;
+        color: black;
+        border: 1px solid #f1f0f0;
+        background-color: #f1f0f0 ;
+        font-size: 15px;
+        font-weight: 600;
+        &:hover {
+            background-color: #5f1c1c;
+            color: white;
+        }
+    }
+
+    .prev, .next {
+        font-weight: bold;
+    }
+}
+
+// Clearfix
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+ 
