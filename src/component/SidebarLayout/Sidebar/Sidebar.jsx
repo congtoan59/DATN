@@ -4,7 +4,7 @@ import LogoFilter from './LogoFilter/LogoFilter';
 function Sidebar() {
     return (
         <>
-            <div className="h-[100%] pt-6 pl-2 ">
+            <div className="pt-6 pl-2 h-screen sticky top-0 ">
                 <div>
                     <Arrange />
                 </div>
