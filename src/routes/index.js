@@ -18,7 +18,7 @@ const routerPulic = [
     {path: '/shoes' , element : Shoes , layout: SidebarLayout} ,
     {path: '/hat' , element : Hat},
     {path: '/clothes' , element : Clothes},
-    {path: '/backpack' , element : Backpack},
+    {path: '/backpack' , element : Backpack ,layout: SidebarLayout},
     {path: '/news' , element : News },
 
 ];

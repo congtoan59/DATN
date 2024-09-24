@@ -1,0 +1,15 @@
+.h-screen::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn */
+}
+.btn-backpack{
+    padding: 10px 15px;
+    display: flex;
+    gap: 5px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #f1f0f0;
+    background-color: #f1f0f0;
+    font-size: 15px;
+    font-weight: 600;
+    width: 4%;
+}
