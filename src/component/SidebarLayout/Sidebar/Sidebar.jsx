@@ -4,7 +4,7 @@ import LogoFilter from './LogoFilter/LogoFilter';
 function Sidebar() {
     return (
         <>
-            <div className="h-[100vh] pt-6 shadow-lg shadow-gray-500 pl-2">
+            <div className="h-[100%] pt-6 pl-2 ">
                 <div>
                     <Arrange />
                 </div>
