@@ -16,7 +16,7 @@ function SidebarLayout({ children }) {
                 <div className="w-[25%]">
                     <Sidebar />
                 </div>
-                <div className="flex-1 p-6 w-[75%]">{children}</div>
+                <div className="flex-1 w-[75%]">{children}</div>
             </div>
             <div>
                 <Footer />

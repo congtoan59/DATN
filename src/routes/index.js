@@ -6,6 +6,10 @@ import Clothes from "../pages/Products/Clothes/Clothes";
 import Backpack from "../pages/Products/Backpack/Backpack";
 import News from "../pages/News/News";
 import SidebarLayout from "../component/SidebarLayout/SidebarLayout";
+import AccountLayout from "../component/AccountLayout/AccountLayout"
+import Login from "../pages/Login/Login";
+import Signup from "../pages/Signup/Signup";
+
 
 
 // Private
@@ -18,9 +22,10 @@ const routerPulic = [
     {path: '/shoes' , element : Shoes , layout: SidebarLayout} ,
     {path: '/hat' , element : Hat},
     {path: '/clothes' , element : Clothes},
-    {path: '/backpack' , element : Backpack},
+    {path: '/backpack' , element : Backpack ,layout: SidebarLayout},
     {path: '/news' , element : News },
-
+    {path: '/login' , element : Login, layout:  AccountLayout},
+    {path: '/signup' , element : Signup,  layout:  AccountLayout },
 ];
 
 const routerPrivate =[
