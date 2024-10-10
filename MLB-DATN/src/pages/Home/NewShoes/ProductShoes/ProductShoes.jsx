@@ -7,7 +7,7 @@ function ProductShoes() {
     return ( 
         
         <>
-            <div className="grid grid-cols-4 gap-3 justify-center">
+            <div className="grid grid-cols-4 gap-3 justify-center pt-[5%] ">
            {products.map((product , index)=> {
                return(
                     <div
@@ -17,7 +17,7 @@ function ProductShoes() {
                         onMouseLeave={() => setHoveredProduct(null)}
                     >
                     <div>
-                        <img src={hoveredProduct === index ? product.img2 : product.img} alt={product.name} />
+                        <img className="rounded-xl" src={hoveredProduct === index ? product.img2 : product.img} alt={product.name} />
                     </div>
                     <div className="text-center text-gray-500 text-base">
                         <span>{product.name}</span>
