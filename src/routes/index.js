@@ -7,8 +7,8 @@ import Backpack from '../pages/Products/Backpack/Backpack';
 import News from '../pages/News/News';
 import SidebarLayout from '../component/SidebarLayout/SidebarLayout';
 import AccountLayout from '../component/AccountLayout/AccountLayout';
-import Signin from '../pages/Signin/Signin';
-import Signup from '../pages/Signup/Signup';
+import SignUp from '../pages/SignUp/SignUp';
+import SignIn from '../pages/SignIn/SignIn';
 import ResetPwd from '../pages/ForgotPassword/ResetPwd/ResetPwd';
 import VerifyCode from '../pages/ForgotPassword/VerifyCode/VerifyCode';
 import NewPwd from '../pages/ForgotPassword/NewPwd/NewPwd';
@@ -23,8 +23,8 @@ const routerPulic = [
     { path: '/clothes', element: Clothes },
     { path: '/backpack', element: Backpack, layout: SidebarLayout },
     { path: '/news', element: News },
-    { path: '/signin', element: Signin, layout: AccountLayout },
-    { path: '/signup', element: Signup, layout: AccountLayout },
+    { path: '/sign-in', element: SignIn, layout: AccountLayout },
+    { path: '/sign-up', element: SignUp, layout: AccountLayout },
     { path: '/resetPwd', element: ResetPwd, layout: AccountLayout },
     { path: '/verifyCode', element: VerifyCode, layout: AccountLayout },
     { path: '/newPwd', element: NewPwd, layout: AccountLayout },
