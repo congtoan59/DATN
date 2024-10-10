@@ -1,7 +1,10 @@
 import './Backpack.scss';
 import { useState } from 'react';
 import { backpackProduct } from './backpackProduct';
+<<<<<<< HEAD:MLB-DATN/src/pages/Products/Backpack/Backpack.jsx
 import { Link } from 'react-router-dom';
+=======
+>>>>>>> f257b2c5e8c58173e4ce655ea39c365425ebba30:src/pages/Products/Backpack/Backpack.jsx
 
 function Backpack() {
     const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -31,6 +34,7 @@ function Backpack() {
                         onMouseEnter={() => setHoveredProduct(index)}
                         onMouseLeave={() => setHoveredProduct(null)}
                     >
+<<<<<<< HEAD:MLB-DATN/src/pages/Products/Backpack/Backpack.jsx
                         <Link to={`/productDetail/${item.id}`}>
                             <img
                                 className="h-[90%]"
@@ -42,6 +46,15 @@ function Backpack() {
                                 alt={item.name}
                             />
                         </Link>
+=======
+                        <img
+                            className='h-[90%]'
+                            src={
+                                hoveredProduct === index ? item.img2 : item.img
+                            }
+                            alt={item.name}
+                        />
+>>>>>>> f257b2c5e8c58173e4ce655ea39c365425ebba30:src/pages/Products/Backpack/Backpack.jsx
                         <div className="text-center">
                             <span className="tracking-wider text-gray-500 ">
                                 {item.nametag}
@@ -67,11 +80,15 @@ function Backpack() {
                             </p>
                         </div>
                         <button
+<<<<<<< HEAD:MLB-DATN/src/pages/Products/Backpack/Backpack.jsx
                             className={`absolute top-10 left-64 rounded-full bg-[#000] text-white flex items-center justify-center w-10 h-10 transition-transform duration-300 transform ${
                                 hoveredProduct === index
                                     ? 'translate-x-0'
                                     : 'translate-x-[50px] opacity-0'
                             }`}
+=======
+                            className={`absolute top-10 left-64 rounded-full bg-[#000] text-white flex items-center justify-center w-10 h-10 transition-transform duration-300 transform ${hoveredProduct === index ? 'translate-x-0' : 'translate-x-[50px] opacity-0'}`}
+>>>>>>> f257b2c5e8c58173e4ce655ea39c365425ebba30:src/pages/Products/Backpack/Backpack.jsx
                             onClick={() => handleAddToCart(item.id)}
                         >
                             <i className="fa-solid fa-cart-shopping"></i>
