@@ -1,12 +1,43 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import UserService from '../../service/UserService';
+import { toast } from 'react-toastify';
 function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setshowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setshowPassword(!showPassword);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const loadingToast = toast.loading('Đang đăng nhập...');
+        try {
+            const res = await UserService.login({
+                email,
+                password,
+            });
+            console.log(res.data);
+
+            toast.success('Đăng nhập thành công!', {
+                id: loadingToast,
+            });
+
+            localStorage.setItem('access_token', res.data.access_token);
+
+            setTimeout(() => {
+                navigate('/'); // Điều chỉnh đường dẫn
+            }, 1000);
+        } catch (error) {
+            console.log(error);
+
+            toast.error('Email hoặc mật khẩu không đúng', {
+                id: loadingToast,
+            });
+        }
     };
     return (
         <>
@@ -21,6 +52,7 @@ function SignIn() {
                 </div>
 
                 <form
+                    onSubmit={handleSubmit}
                     action=""
                     className=" flex flex-col items-center justify-center w-[60%] mx-auto"
                 >
@@ -98,9 +130,7 @@ function SignIn() {
                     </div>
                     {/* login */}
                     <div className=" bg-black text-white w-[100%] h-10 font-semibold items-center text-center leading-10 rounded-3xl mb-3 mt-6 hover:bg-[#420500] cursor-pointer">
-                        <Link className="">
-                            <button>Đăng nhập</button>
-                        </Link>
+                        <button type="submit">Đăng nhập</button>
                     </div>
                 </form>
                 {/*  */}

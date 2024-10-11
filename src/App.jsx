@@ -1,24 +1,17 @@
 import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
-import { Fragment, useEffect } from 'react'; // thẻ chỉ để chứa
+import { Fragment } from 'react'; // thẻ chỉ để chứa
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { routerPulic, routerPrivate } from './routes';
+import { routerPulic } from './routes';
 // import axios from 'axios';
-import { Provider } from 'react-redux';
-import { store } from './redux/store';
+// import { Provider } from 'react-redux';
+// import { store } from './redux/store';
 
 function App() {
-    // useEffect(() => {
-    //     fetchApi();
-    // }, []);
-
-    // const fetchApi = async () => {
-    //     const res = await axios.get(`http://localhost:3001/api/user`);
-    //     console.log(res);
-    // };
+   
 
     return (
         <>
-            <Provider store={store}> 
+            {/* <Provider store={store}>  */}
             {/* cung cấp stor cho toàn bộ ứng dụng */}
             <Router>
                 {/* <DefaultLayout /> */}
@@ -75,7 +68,7 @@ function App() {
                         })}
                     </Routes> */}
             </Router>
-            </Provider>
+            {/* </Provider> */}
         </>
     );
 }

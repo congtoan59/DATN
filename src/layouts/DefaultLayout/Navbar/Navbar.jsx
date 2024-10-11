@@ -1,5 +1,28 @@
-import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 function NavBar() {
+    const [name, setName] = useState('');
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        navigate('/sign-in'); // Chuyển hướng đến trang đăng nhập
+    };
+    useEffect(() => {
+        const token = localStorage.getItem('access_token');
+
+        if (token) {
+            try {
+                const decoded = jwtDecode(token);
+                setName(decoded.payload.name);
+            } catch (error) {
+                console.error('Token không hợp lệ', error);
+            }
+        }
+    }, []);
+
     return (
         <div className="bg-black flex justify-between items-center h-[80px]">
             <div className="w-[10%] items-center pt-4">
@@ -49,14 +72,22 @@ function NavBar() {
                 <div>
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <div>
-                    <i className="fa-regular fa-user"></i>
-                </div>
+
                 <div>
                     <i className="fa-regular fa-heart"></i>
                 </div>
                 <div>
                     <i className="fa-solid fa-cart-shopping"></i>
+                </div>
+
+                <div>
+                    {name ? (
+                        <Link to={'/profile'}>Xin chào , {name}</Link>
+                    ) : (
+                        <Link to={'/sign-in'}>
+                            <i className="fa-regular fa-user"></i>
+                        </Link>
+                    )}
                 </div>
             </div>
         </div>
