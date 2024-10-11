@@ -1,47 +1,48 @@
-import DefaultLayout from './component/DefaultLayout/DefaultLayout';
+import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
 import { Fragment } from 'react'; // thẻ chỉ để chứa
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { routerPulic, routerPrivate } from './routes';
-
-
+import { routerPulic } from './routes';
+// import axios from 'axios';
 // import { Provider } from 'react-redux';
-
+// import { store } from './redux/store';
 
 function App() {
+   
+
     return (
         <>
             {/* <Provider store={store}>  */}
-              {/* cung cấp stor cho toàn bộ ứng dụng */}
-                <Router>
-                    {/* <DefaultLayout /> */}
+            {/* cung cấp stor cho toàn bộ ứng dụng */}
+            <Router>
+                {/* <DefaultLayout /> */}
 
-                    <Routes>
-                        {routerPulic.map((route, index) => {
-                            const Page = route.element;
+                <Routes>
+                    {routerPulic.map((route, index) => {
+                        const Page = route.element;
 
-                            let Layout = DefaultLayout;
+                        let Layout = DefaultLayout;
 
-                            if (route.layout) {
-                                Layout = route.layout;
-                            } else if (route.layout === null) {
-                                Layout = Fragment;
-                            }
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
 
-                            return (
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    element={
-                                        <Layout>
-                                            <Page />
-                                        </Layout>
-                                    }
-                                />
-                            );
-                        })}
-                    </Routes>
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        );
+                    })}
+                </Routes>
 
-                    {/* <Routes>
+                {/* <Routes>
                         {routerPrivate.map((route, index) => {
                             const Page = route.element;
 
@@ -66,8 +67,7 @@ function App() {
                             )
                         })}
                     </Routes> */}
-                    
-                </Router>
+            </Router>
             {/* </Provider> */}
         </>
     );

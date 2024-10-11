@@ -1,16 +1,16 @@
-import NewsSmall from "./NewsSmall/NewsSmall";
-import NewsBig from "./NewsBig/NewsBig";
-import BannerSidebar from "../../component/SidebarLayout/BannerSidebar/BannerSidebar";
+import NewsSmall from './NewsSmall/NewsSmall';
+import NewsBig from './NewsBig/NewsBig';
+import BannerSidebar from '../../layouts/SidebarLayout/BannerSidebar/BannerSidebar';
 function News() {
-    return ( 
+    return (
         <>
             <div>
-                <BannerSidebar/>
+                <BannerSidebar />
                 <NewsBig />
                 <NewsSmall />
             </div>
         </>
-     );
+    );
 }
 
 export default News;

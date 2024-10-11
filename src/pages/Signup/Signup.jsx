@@ -1,16 +1,54 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import UserService from '../../service/UserService';
 function SignUp() {
-    const [lastName, setlastName] = useState('');
-    const [firstName, setfirstName] = useState('');
-    const [userName, setuserName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const [showPassword, setshowPassword] = useState(false);
+    const [showPassword1, setshowPassword1] = useState(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+
+        try {
+            const result = await UserService.register(formData);
+            if (result.status === 'OK') {
+                // Xử lý đăng ký thành công
+                console.log('Đăng ký thành công:', result);
+                // Có thể thêm chuyển hướng: navigate('/login');
+            } else {
+                setError(result.message);
+            }
+        } catch (errorMessage) {
+            setError(errorMessage);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const togglePasswordVisibility = () => {
         setshowPassword(!showPassword);
     };
+    const togglePasswordVisibilityConfirm = () => {
+        setshowPassword1(!showPassword1);
+    };
+
     return (
         <>
             <div>
@@ -23,76 +61,29 @@ function SignUp() {
                         Vui lòng nhập thông tin chi tiết của bạn
                     </p>
                 </div>
-
+                {error && (
+                    <div className="text-red-500 text-center mb-4">{error}</div>
+                )}
                 <form
+                    onSubmit={handleSubmit}
                     action=""
                     className=" flex flex-col items-center w-[60%] mx-auto"
                 >
-                    <div className="flex w-[100%] justify-between gap-2.5">
-                        <div className="relative flex-[0_0_45%] mb-4">
-                            <input
-                                id="last-name"
-                                className="bg-transparent border-b-2 border-gray-400 text-base pb-[2px] pt-4 w-full focus:border-black focus:outline-none placeholder-transparent peer focus:bg-white"
-                                type="text"
-                                name="lastName"
-                                placeholder=" "
-                                value={lastName}
-                                onChange={(e) => setlastName(e.target.value)}
-                                required
-                            />
-                            <label
-                                htmlFor="last-name"
-                                className={`absolute left-0 top-2 text-black transition-all duration-300 transform  origin-left peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4  ${
-                                    lastName ||
-                                    document.activeElement ===
-                                        document.getElementById('last-name')
-                                        ? 'scale-75 -translate-y-4'
-                                        : 'scale-100 translate-y-0'
-                                }`}
-                            >
-                                Họ
-                            </label>
-                        </div>
-                        <div className="relative flex-[0_0_45%] mb-4 text-center">
-                            <input
-                                id="first-name"
-                                className="bg-transparent border-b-2 border-gray-400 text-base pb-[2px] pt-4 w-full focus:border-black focus:outline-none placeholder-transparent peer"
-                                type="text"
-                                name="firstName"
-                                placeholder=" "
-                                value={firstName}
-                                onChange={(e) => setfirstName(e.target.value)}
-                                required
-                            />
-                            <label
-                                htmlFor="first-name"
-                                className={`absolute left-0 top-2 text-black transition-all duration-300 transform  origin-left peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4  ${
-                                    firstName ||
-                                    document.activeElement ===
-                                        document.getElementById('first-name')
-                                        ? 'scale-75 -translate-y-4'
-                                        : 'scale-100 translate-y-0'
-                                }`}
-                            >
-                                Tên
-                            </label>
-                        </div>
-                    </div>
                     <div className="relative w-[100%] mb-4  text-center ">
                         <input
-                            id="user-name"
+                            id="name"
                             className="bg-transparent border-b-2 border-gray-400 text-base pb-[2px] pt-4 w-full focus:border-black focus:outline-none placeholder-transparent peer "
                             type="text"
-                            name="userName"
+                            name="name"
                             placeholder=" "
-                            value={userName}
-                            onChange={(e) => setuserName(e.target.value)}
+                            value={formData.name}
+                            onChange={handleChange}
                             required
                         />
                         <label
                             htmlFor="user-name"
                             className={`absolute left-0 top-2 text-black transition-all duration-300 transform  origin-left peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4  ${
-                                userName ||
+                                formData.name ||
                                 document.activeElement ===
                                     document.getElementById('user-name')
                                     ? 'scale-75 -translate-y-4'
@@ -109,14 +100,14 @@ function SignUp() {
                             type="email"
                             name="email"
                             placeholder=" "
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={formData.email}
+                            onChange={handleChange}
                             required
                         />
                         <label
                             htmlFor="email"
                             className={`absolute left-0 top-2 text-black transition-all duration-300 transform  origin-left peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4  ${
-                                email ||
+                                formData.email ||
                                 document.activeElement ===
                                     document.getElementById('email')
                                     ? 'scale-75 -translate-y-4'
@@ -134,8 +125,8 @@ function SignUp() {
                             name="password"
                             placeholder=" "
                             required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={formData.password}
+                            onChange={handleChange}
                         />
                         <label
                             htmlFor="password"
@@ -155,6 +146,39 @@ function SignUp() {
                             )}
                         </button>
                     </div>
+                    <div className="relative w-[100%] mb-4 text-center">
+                        <input
+                            id="confirmPassword"
+                            className="bg-transparent border-b-2 border-gray-400 text-base pb-[2px] pt-4 w-full focus:border-black focus:outline-none placeholder-transparent peer"
+                            type={showPassword ? 'text' : 'password'}
+                            name="confirmPassword"
+                            placeholder=" "
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label
+                            htmlFor="confirmPassword"
+                            className={`absolute left-0 top-2 text-black transition-all duration-300 transform origin-left ${
+                                formData.confirmPassword
+                                    ? 'scale-75 -translate-y-4'
+                                    : 'scale-100 translate-y-0'
+                            }`}
+                        >
+                            Xác nhận mật khẩu
+                        </label>
+                        <button
+                            type="button"
+                            onClick={togglePasswordVisibilityConfirm}
+                            className="absolute right-0 top-3 focus:outline-none"
+                        >
+                            {showPassword1 ? (
+                                <i className="fa-solid fa-eye"></i>
+                            ) : (
+                                <i className="fa-solid fa-eye-slash"></i>
+                            )}
+                        </button>
+                    </div>
                     <div className="flex w-[100%] mb-6 justify-between text-xs ">
                         <label htmlFor="checkbox" className="flex items-center">
                             <input
@@ -165,9 +189,13 @@ function SignUp() {
                             Remember me
                         </label>
                     </div>
-                    <div className=" bg-black text-white w-[100%] h-10 font-semibold items-center text-center leading-10 rounded-3xl mb-3 mt-3 hover:bg-[#420500] cursor-pointer">
-                        <button>Đăng ký</button>
-                    </div>
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="bg-black text-white w-full h-10 font-semibold text-center rounded-3xl mb-3 mt-3 hover:bg-[#420500] cursor-pointer disabled:opacity-50"
+                    >
+                        {loading ? 'Đang xử lý...' : 'Đăng ký'}
+                    </button>
                 </form>
 
                 <div className=" bg-[#e9e9e9] text-black w-[60%] h-10 items-center text-center leading-10 rounded-3xl mb-4 mx-auto">
