@@ -23,6 +23,7 @@ function SignIn() {
             console.log(res.data);
 
             toast.success('Đăng nhập thành công!', {
+                autoClose: 2000,
                 id: loadingToast,
             });
 
@@ -35,8 +36,11 @@ function SignIn() {
             console.log(error);
 
             toast.error('Email hoặc mật khẩu không đúng', {
+                autoClose: 2000,
                 id: loadingToast,
             });
+        } finally {
+            toast.dismiss(loadingToast); // Đảm bảo loading toast được đóng trong mọi trường hợp
         }
     };
     return (
