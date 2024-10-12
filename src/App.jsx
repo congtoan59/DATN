@@ -2,13 +2,13 @@ import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
 import { Fragment } from 'react'; // thẻ chỉ để chứa
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { routerPulic } from './routes';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import axios from 'axios';
 // import { Provider } from 'react-redux';
 // import { store } from './redux/store';
 
 function App() {
-   
-
     return (
         <>
             {/* <Provider store={store}>  */}
@@ -67,6 +67,7 @@ function App() {
                             )
                         })}
                     </Routes> */}
+                <ToastContainer />
             </Router>
             {/* </Provider> */}
         </>
