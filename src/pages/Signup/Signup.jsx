@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import UserService from '../../service/UserService';
+import * as UserService from '../../service/UserService';
+import { toast } from 'react-toastify';
+
 function SignUp() {
     const [formData, setFormData] = useState({
         name: '',
@@ -12,6 +14,8 @@ function SignUp() {
     const [loading, setLoading] = useState(false);
     const [showPassword, setshowPassword] = useState(false);
     const [showPassword1, setshowPassword1] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,15 +31,15 @@ function SignUp() {
         setLoading(true);
 
         try {
-            const result = await UserService.register(formData);
+            const result = await UserService.resigterUser(formData);
             if (result.status === 'OK') {
-                // Xử lý đăng ký thành công
-                console.log('Đăng ký thành công:', result);
-                // Có thể thêm chuyển hướng: navigate('/login');
+                navigate('/sign-in');
+                toast.success('Đăng ký thành công');
             } else {
-                setError(result.message);
+                toast.error('Đăng ký không thành công');
             }
         } catch (errorMessage) {
+            toast.error('Đăng ký xảy ra lỗi ');
             setError(errorMessage);
         } finally {
             setLoading(false);
@@ -79,6 +83,7 @@ function SignUp() {
                             value={formData.name}
                             onChange={handleChange}
                             required
+                            autoComplete="off"
                         />
                         <label
                             htmlFor="user-name"
@@ -103,6 +108,7 @@ function SignUp() {
                             value={formData.email}
                             onChange={handleChange}
                             required
+                            autoComplete="off"
                         />
                         <label
                             htmlFor="email"
@@ -127,6 +133,7 @@ function SignUp() {
                             required
                             value={formData.password}
                             onChange={handleChange}
+                            autoComplete="off"
                         />
                         <label
                             htmlFor="password"
@@ -150,20 +157,17 @@ function SignUp() {
                         <input
                             id="confirmPassword"
                             className="bg-transparent border-b-2 border-gray-400 text-base pb-[2px] pt-4 w-full focus:border-black focus:outline-none placeholder-transparent peer"
-                            type={showPassword ? 'text' : 'password'}
+                            type={showPassword1 ? 'text' : 'password'}
                             name="confirmPassword"
                             placeholder=" "
+                            required
                             value={formData.confirmPassword}
                             onChange={handleChange}
-                            required
+                            autoComplete="off"
                         />
                         <label
                             htmlFor="confirmPassword"
-                            className={`absolute left-0 top-2 text-black transition-all duration-300 transform origin-left ${
-                                formData.confirmPassword
-                                    ? 'scale-75 -translate-y-4'
-                                    : 'scale-100 translate-y-0'
-                            }`}
+                            className="absolute left-0 top-2 text-black transition-all duration-300 transform scale-100 origin-left peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 peer-valid:scale-75 peer-valid:-translate-y-4"
                         >
                             Xác nhận mật khẩu
                         </label>

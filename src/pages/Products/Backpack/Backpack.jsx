@@ -1,30 +1,48 @@
 import './Backpack.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { backpackProduct } from './backpackProduct';
 import { Link } from 'react-router-dom';
+import http from '../../../http/api';
+import * as ProductService from '../../../service/ProductService';
 
 function Backpack() {
     const [hoveredProduct, setHoveredProduct] = useState(null);
     const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 9; // Số sản phẩm trên mỗi trang
+    const [products, setProducts] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Tính toán các sản phẩm cần hiển thị
-    const startIndex = currentPage * itemsPerPage;
-    const currentItems = backpackProduct.slice(
-        startIndex,
-        startIndex + itemsPerPage,
-    );
-    const totalPages = Math.ceil(backpackProduct.length / itemsPerPage);
+    const fetchProductAll = async () => {
+        try {
+            const res = await ProductService.getAllProduct();
+            console.log(res);
+
+            setProducts(res);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            setError(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchProductAll();
+    }, []);
+
+    // const { isLoading, data: products } = useQuery({
+    //     queryKey: 'products',
+    //     queryFn: fetchProductAll,
+    //   });
 
     const handleAddToCart = (id) => {
-        console.log('Product ID:', id); // Thay đổi để thực hiện hành động thêm vào giỏ hàng
-        // Bạn có thể thêm logic để thêm sản phẩm vào giỏ hàng ở đây
+        console.log('Product ID:', id);
     };
 
     return (
         <>
-            <div className="grid grid-cols-3 gap-4">
-                {currentItems.map((item, index) => (
+            <div className="grid grid-cols-3 gap-4 mt-4">
+                {products.map((item, index) => (
                     <div
                         className="relative hover:cursor-pointer"
                         key={item.id}
@@ -32,19 +50,19 @@ function Backpack() {
                         onMouseLeave={() => setHoveredProduct(null)}
                     >
                         <Link to={`/productDetail/${item.id}`}>
-                            <img
-                                className="h-[90%]"
-                                src={
-                                    hoveredProduct === index
-                                        ? item.img2
-                                        : item.img
-                                }
-                                alt={item.name}
-                            />
+                            {item.imageUrls && item.imageUrls.length > 0 ? (
+                                <img
+                                    src={item.imageUrls[0].url}
+                                    alt={item.imageUrls[0].alt || item.name}
+                                    className="object-cover rounded"
+                                />
+                            ) : (
+                                <span>Chưa có ảnh</span>
+                            )}
                         </Link>
                         <div className="text-center">
                             <span className="tracking-wider text-gray-500 ">
-                                {item.nametag}
+                                {item.name}
                             </span>
                         </div>
                         <div>
@@ -80,7 +98,7 @@ function Backpack() {
                 ))}
             </div>
 
-            <div className="flex justify-center pt-10 gap-2 pb-6">
+            {/* <div className="flex justify-center pt-10 gap-2 pb-6">
                 {Array.from({ length: totalPages }, (_, index) => (
                     <button
                         key={index}
@@ -94,7 +112,7 @@ function Backpack() {
                         {index + 1}
                     </button>
                 ))}
-            </div>
+            </div> */}
         </>
     );
 }

@@ -1,46 +1,29 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import UserService from '../../service/UserService';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/auth/authSlice';
 function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setshowPassword] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const togglePasswordVisibility = () => {
         setshowPassword(!showPassword);
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const loadingToast = toast.loading('Đang đăng nhập...');
         try {
-            const res = await UserService.login({
-                email,
-                password,
-            });
-            console.log(res.data);
-
-            toast.success('Đăng nhập thành công!', {
-                autoClose: 2000,
-                id: loadingToast,
-            });
-
-            localStorage.setItem('access_token', res.data.access_token);
-
-            setTimeout(() => {
-                navigate('/'); // Điều chỉnh đường dẫn
-            }, 1000);
+            const res = await dispatch(loginUser({ email, password })).unwrap();
+            console.log(res);
+            toast.success('Đăng nhập thành công!');
+            localStorage.setItem('accessToken', res.access_token);
+            localStorage.setItem('refreshToken', res.refresh_token);
+            navigate('/');
         } catch (error) {
-            console.log(error);
-
-            toast.error('Email hoặc mật khẩu không đúng', {
-                autoClose: 2000,
-                id: loadingToast,
-            });
-        } finally {
-            toast.dismiss(loadingToast); // Đảm bảo loading toast được đóng trong mọi trường hợp
+            toast.error(error.message || 'Đăng nhập không thành công!');
         }
     };
     return (
@@ -57,7 +40,7 @@ function SignIn() {
 
                 <form
                     onSubmit={handleSubmit}
-                    action=""
+                    action="#"
                     className=" flex flex-col items-center justify-center w-[60%] mx-auto"
                 >
                     {/* email */}
