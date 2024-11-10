@@ -63,3 +63,12 @@ export const restoreProduct = async (id) => {
         throw error;
     }
 }
+export const getProductsByCategory = async (categoryName) => {
+    try {
+        const res = await api.get (`product/category/${categoryName}`)
+        return res.data
+    } catch (error) {
+        console.log('Lỗi khi get sản phẩm' , error);
+        throw error
+    }
+}

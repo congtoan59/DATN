@@ -6,6 +6,10 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.formatContent {
+    padding: 10px 20px;
+}
+
 .rounded-input {
     border-radius: 20px;
     /* Đặt giá trị bo tròn tùy theo ý muốn */
