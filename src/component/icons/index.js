@@ -34,5 +34,6 @@ export { default as Delete } from '@mui/icons-material/DeleteOutlineRounded';
 export { default as Edit } from '@mui/icons-material/EditCalendarRounded';
 export { default as Restart } from '@mui/icons-material/RestartAltRounded';
 
+export { default as Evaluation } from '@mui/icons-material/StarRounded';
 
 

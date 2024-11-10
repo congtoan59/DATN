@@ -5,8 +5,8 @@ import { formatCurrencyVND } from '../../http/api';
 import ButtonDetail from '../../component/buttonDetail/ButtonDetail';
 import ContentProductDetail from './components/ContentProductDetail';
 import ImageWithFallback from '../../component/img/ImageWithFallback';
-import { Right, Left } from '../../component/icons';
-
+import { Right, Left, Evaluation } from '../../component/icons';
+import Banner from '../../component/banner/Banner';
 function ProductDetail() {
     const { id } = useParams();
     const [error, setError] = useState('');
@@ -81,7 +81,10 @@ function ProductDetail() {
 
     return (
         <>
-            <div className="flex justify-center gap-6 pt-20 mb-10">
+            <div>
+                <Banner title={product.name} content={product.name} />
+            </div>
+            <div className="flex justify-center gap-6 pt-20 mb-20">
                 <div className="flex-[0_0_40%]">
                     <div className="mb-4">
                         <div className="relative">
@@ -120,7 +123,7 @@ function ProductDetail() {
                                 <ImageWithFallback
                                     src={image.url}
                                     alt={`${product.name} - ${index + 1}`}
-                                    className="w-full h-full object-cover rounded-lg"
+                                    className="w-full h-full object-cover rounded-xl"
                                 />
                             </div>
                         ))}
@@ -131,6 +134,21 @@ function ProductDetail() {
                         <h1 className="font-medium text-[24px]">
                             {product.name}
                         </h1>
+                        <div className="flex gap-2 items-center">
+                            <div>
+                                <Evaluation className="text-orange-500" />
+                                <Evaluation className="text-orange-500" />
+                                <Evaluation className="text-orange-500" />
+                                <Evaluation className="text-orange-500" />
+                                <Evaluation className="text-orange-500" />
+                            </div>
+                            <div>
+                                <h1 className="font-normal text-[14px] hover:text-blue-500 cursor-pointer duration-300">
+                                    Đánh giá sản phẩm này
+                                </h1>
+                            </div>
+                        </div>
+
                         <span className="text-[14px]">
                             Thương hiệu :{' '}
                             <span className="font-medium">
@@ -202,7 +220,7 @@ function ProductDetail() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mb-10">
                 <ContentProductDetail />
             </div>
         </>
