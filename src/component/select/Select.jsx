@@ -27,7 +27,7 @@ const Select = ({
                 required={require}
                 onChange={onChange}
                 defaultValue={defaultValue}
-                className="w-full h-11 px-4 py-3 text-[14px] text-primaryAdmin
+                className="border-solid border-2 border-black-600 w-full h-11 px-4 py-3 text-[14px] text-primaryAdmin
                      bg-white border-custom rounded-lg
                      placeholder:font-semibold font-semibold
                      hover:border-gray-300

@@ -4,6 +4,7 @@ const InputAddAdmin = ({
     label,
     require,
     type = 'text',
+    min,
     onChange,
 }) => {
     return (
@@ -20,7 +21,8 @@ const InputAddAdmin = ({
             <input
                 onChange={onChange}
                 type={type}
-                className="border-custom bg-white px-4 py-3 text-[14px] text-primaryAdmin placeholder:font-semibold font-semibold rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-200"
+                min={min}
+                className="border-solid border-2 border-black-600 bg-white px-4 py-3 text-[14px] text-primaryAdmin placeholder:font-semibold font-semibold rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-200"
                 placeholder={placeholder}
                 name={name}
                 id={name}

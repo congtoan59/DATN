@@ -1,30 +1,29 @@
 import { useState, useEffect } from 'react';
-import * as ProductService from '../../../../service/ProductService';
+import * as CategoryService from '../../../../service/CategoryService';
 import api from '../../../../http/api';
 import { toast } from 'react-toastify';
 import { confirmAlert } from 'react-confirm-alert';
-import { formatCurrencyVND, formatDateTime } from '../../../../http/api';
-import { Link } from 'react-router-dom';
+import { formatDateTime } from '../../../../http/api';
 import { ArrowRight, Delete, Restart } from '../../../../component/icons';
 
-function SoftDelete() {
-    const [deletedProducts, setDeletedProducts] = useState([]);
+function SoftDeleteCategory() {
+    const [deletedCategories, setDeletedCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchDeletedProducts();
+        fetchDeletedCategories();
     }, []);
 
-    const fetchDeletedProducts = async () => {
+    const fetchDeletedCategories = async () => {
         try {
-            const res = await api.get('/product/deleted');
+            const res = await api.get('/category/deleted');
             console.log(res.data);
 
-            setDeletedProducts(res.data);
+            setDeletedCategories(res.data);
             setLoading(false);
         } catch (err) {
-            console.error('Lỗi khi tải sản phẩm đã xóa:', err);
+            console.error('Lỗi khi tải danh mục đã xóa:', err);
             setError(err.message);
             setLoading(false);
         }
@@ -39,23 +38,25 @@ function SoftDelete() {
                         <h1 className="font-bold text-green-700 text-[18px] tracking-wider">
                             Xác nhận khôi phục
                         </h1>
-                        <p>Bạn có chắc muốn khôi phục sản phẩm này?</p>
+                        <p>Bạn có chắc muốn khôi phục danh mục này?</p>
                         <div className="flex justify-between">
                             <button
                                 className="confirm-buttonRestore font-bold"
                                 onClick={async () => {
                                     try {
-                                        await ProductService.restoreProduct(id);
-                                        toast.success(
-                                            'Khôi phục sản phẩm thành công!',
+                                        await CategoryService.restoreCategory(
+                                            id,
                                         );
-                                        fetchDeletedProducts();
+                                        toast.success(
+                                            'Khôi phục danh mục thành công!',
+                                        );
+                                        fetchDeletedCategories();
                                     } catch (error) {
                                         toast.error(
-                                            'Khôi phục sản phẩm thất bại!!!',
+                                            'Khôi phục danh mục thất bại!!!',
                                         );
                                         console.error(
-                                            'Lỗi khi khôi phục sản phẩm:',
+                                            'Lỗi khi khôi phục danh mục:',
                                             error,
                                         );
                                     }
@@ -86,21 +87,23 @@ function SoftDelete() {
                         <h1 className="font-bold text-red-700 text-[18px] tracking-wider">
                             Xác nhận xóa
                         </h1>
-                        <p>Bạn có chắc muốn xóa sản phẩm này?</p>
+                        <p>Bạn có chắc muốn xóa danh mục này?</p>
                         <div className="flex justify-between">
                             <button
                                 className="confirm-button font-bold"
                                 onClick={async () => {
                                     try {
-                                        await ProductService.deleteProduct(id);
-                                        toast.success(
-                                            'Xóa sản phẩm thành công!',
+                                        await CategoryService.deleteCategory(
+                                            id,
                                         );
-                                        fetchDeletedProducts();
+                                        toast.success(
+                                            'Xóa danh mục thành công!',
+                                        );
+                                        fetchDeletedCategories();
                                     } catch (error) {
-                                        toast.error('Xóa sản phẩm thất bại!!!');
+                                        toast.error('Xóa danh mục thất bại!!!');
                                         console.log(
-                                            'Có lỗi khi xóa sản phẩm này ! ',
+                                            'Có lỗi khi xóa danh mục này ! ',
                                             error,
                                         );
                                     }
@@ -135,7 +138,7 @@ function SoftDelete() {
                     </span>
                     <ArrowRight className="!text-[13px] flex !justify-center !items-center !h-6 !text-[#3e465b]" />
                     <span className="hover:underline cursor-pointer">
-                        Sản Phẩm
+                        Danh Mục
                     </span>
                     <ArrowRight className="!text-[13px] flex !justify-center !items-center !h-6 !text-[#3e465b]" />
                     <span className="hover:underline cursor-pointer">
@@ -143,15 +146,17 @@ function SoftDelete() {
                     </span>
                 </div>
                 <div className="text-[30px] font-bold tracking-wider mb-8">
-                    Sản Phẩm Đã Xóa
+                    Danh Mục Đã Xóa
                 </div>
             </div>
             <div className="product-list p-5">
-                {deletedProducts.length === 0 ? (
+                {deletedCategories.length === 0 ? (
                     <div className="text-center text-gray-500 font-bold text-lg">
-                        Không có sản phẩm nào bị xóa
+                        Không có danh mục nào bị xóa
                     </div>
                 ) : (
+                    // Hiển thị bảng danh mục
+
                     <table className="min-w-full bg-white">
                         <thead className="">
                             <tr className="uppercase font-bold border-b-2 border-gray-300">
@@ -159,13 +164,10 @@ function SoftDelete() {
                                     STT
                                 </th>
                                 <th className="py-3 uppercase font-semibold text-sm text-center">
-                                    Ảnh
+                                    Tên Danh Mục
                                 </th>
                                 <th className="py-3 uppercase font-semibold text-sm text-center">
-                                    Tên Sản Phẩm
-                                </th>
-                                <th className="py-3 uppercase font-semibold text-sm text-center">
-                                    Giá
+                                    Mô tả
                                 </th>
                                 <th className="py-3 uppercase font-semibold text-sm text-center">
                                     Ngày Xóa
@@ -176,62 +178,36 @@ function SoftDelete() {
                             </tr>
                         </thead>
                         <tbody className="text-gray-700">
-                            {deletedProducts.map((product, index) => (
-                                <tr key={product.id}>
+                            {deletedCategories.map((category, index) => (
+                                <tr key={category.id}>
                                     <td className="w-1/12 text-center py-3 px-4">
                                         {index + 1}
                                     </td>
                                     <td className="w-3/12 text-center py-3 px-4">
-                                        {console.log(
-                                            'Image URLs:',
-                                            product.imageUrls,
-                                        )}
-                                        {product.imageUrls &&
-                                        product.imageUrls.length > 0 ? (
-                                            <div className="flex justify-center gap-2">
-                                                {product.imageUrls.map(
-                                                    (image, idx) => (
-                                                        <img
-                                                            key={idx}
-                                                            src={image.url}
-                                                            alt={
-                                                                image.alt ||
-                                                                product.name
-                                                            }
-                                                            className="w-16 h-16 object-cover rounded"
-                                                        />
-                                                    ),
-                                                )}
-                                            </div>
-                                        ) : (
-                                            <span>Chưa có ảnh</span>
-                                        )}
+                                        {category.name}
                                     </td>
                                     <td className="w-3/12 text-center py-3 px-4">
-                                        {product.name}
-                                    </td>
-                                    <td className="w-2/12 text-center py-3 px-4">
-                                        {formatCurrencyVND(product.price)}
+                                        {category.description}
                                     </td>
                                     <td className="w-2/12 text-center py-3 px-4">
                                         {formatDateTime(
-                                            new Date(product.deleted_at),
+                                            new Date(category.deleted_at),
                                         )}
                                     </td>
                                     <td className="w-4/12 text-center py-3 px-4 ">
                                         <button
                                             onClick={() =>
-                                                handleRestore(product.id)
+                                                handleRestore(category.id)
                                             }
-                                            className="text-green-500 hover:text-green-700  font-bold  rounded mr-2"
+                                            className="text-green-500 hover:text-green-700 px-2 py-2 font-bold  rounded mr-2"
                                         >
                                             <Restart />
                                         </button>
                                         <button
                                             onClick={() =>
-                                                handleDelete(product.id)
+                                                handleDelete(category.id)
                                             }
-                                            className="text-red-500 hover:text-red-700  font-bold  rounded"
+                                            className="text-red-500 hover:text-red-700 px-2 py-2   font-bold  rounded"
                                         >
                                             <Delete />
                                         </button>
@@ -246,4 +222,4 @@ function SoftDelete() {
     );
 }
 
-export default SoftDelete;
+export default SoftDeleteCategory;

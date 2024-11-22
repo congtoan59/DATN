@@ -81,7 +81,7 @@ function EditProduct() {
                         onChange={handleInputChange}
                     />
                 </div>
-                {/* <div>
+                <div>
                     <label htmlFor="name">Tên sản phẩm:</label>
                     <input
                         type="text"
@@ -104,7 +104,7 @@ function EditProduct() {
                     />
                 </div>
 
-                <button type="submit">Cập nhật</button> */}
+                <button type="submit">Cập nhật</button>
             </form>
         </>
     );
