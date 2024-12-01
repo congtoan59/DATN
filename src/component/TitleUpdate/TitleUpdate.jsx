@@ -24,6 +24,21 @@ function TitleUpdate() {
             case '/news':
                 document.title = 'Six Stars - Tin Tức';
                 break;
+            case '/profile':
+                document.title = 'Six Stars - Tài khoản ';
+                break;
+            case '/sign-in':
+                document.title = 'Six Stars - Đăng Nhập ';
+                break;
+            case '/sign-up':
+                document.title = 'Six Stars - Đăng ký ';
+                break;
+            case '/cart':
+                document.title = 'Six Stars - Giỏ hàng ';
+                break;
+            case '/checkout':
+                document.title = 'Six Stars - Thanh toán ';
+                break;
             default:
                 document.title = 'Six Stars';
                 break;

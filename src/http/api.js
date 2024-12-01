@@ -1,12 +1,12 @@
 import axios from "axios";
 import store from '../redux/store'
 export const URL_API = import.meta.env.VITE_BASE_API_URL
-import { updateAccessToken , logout } from "../redux/auth/authSlice";
+import { updateAccessToken, logout } from "../redux/auth/authSlice";
 
 class ApiService {
-    constructor(){
+    constructor() {
         this.api = axios.create({
-            baseURL : URL_API
+            baseURL: URL_API
         })
         this.api.interceptors.request.use((config) => {
             const { accessToken } = store.getState().auth;
@@ -38,7 +38,7 @@ class ApiService {
             }
         );
     }
-    async get(url , config = {}){
+    async get(url, config = {}) {
         try {
             const response = await this.api.get(url, config);
             return response.data;
@@ -46,9 +46,9 @@ class ApiService {
             this.handleError(error);
         }
     }
-    async post(url ,data , config = {}){
+    async post(url, data, config = {}) {
         try {
-            const response = await this.api.post(url, data , config);
+            const response = await this.api.post(url, data, config);
             return response.data;
         } catch (error) {
             this.handleError(error);
@@ -76,10 +76,10 @@ class ApiService {
 
     handleError(error) {
         console.error("API call error:", error);
-        throw error; 
+        throw error;
     }
 
-   
+
 }
 
 export const formatCurrencyVND = (value) => {
@@ -90,16 +90,17 @@ export const formatCurrencyVND = (value) => {
 };
 
 export const formatDateTime = (date) => {
-    if (!(date instanceof Date) || isNaN(date)) {
+    const parsedDate = typeof date === 'string' ? new Date(date) : date;
+    if (!(parsedDate instanceof Date) || isNaN(parsedDate)) {
         return 'Không hợp lệ';
     }
-    return date.toLocaleString('vi-VN', {
+    return parsedDate.toLocaleString('vi-VN', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
+        // hour: '2-digit',
+        // minute: '2-digit',
+        // second: '2-digit',
     });
 };
 

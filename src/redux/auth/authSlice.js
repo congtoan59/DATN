@@ -19,6 +19,7 @@ export const refreshToken = createAsyncThunk('auth/refreshToken', async (_, { ge
     try {
         const { refreshToken } = getState().auth;
         const res = await UserService.refreshToken({ refresh_token: refreshToken });
+        console.log('res' , res)
         return res;
     } catch (error) {
         return rejectWithValue(error.response);

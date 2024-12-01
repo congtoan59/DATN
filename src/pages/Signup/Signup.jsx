@@ -32,6 +32,8 @@ function SignUp() {
 
         try {
             const result = await UserService.resigterUser(formData);
+            console.log('result', result);
+
             if (result.status === 'OK') {
                 navigate('/sign-in');
                 toast.success('Đăng ký thành công');

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../../public/image/LogoAll/LogoAdmin.png';
 import Navigate from '../../component/navigate/Navigate';
+import { useEffect, useState } from 'react';
 import {
     OverView,
     Staff,
@@ -20,6 +21,19 @@ import {
     DropDown,
 } from '../../component/icons';
 function AdminLayout({ children }) {
+    const [userName, setUserName] = useState(null);
+    const [role, setRole] = useState(null);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUserName(JSON.parse(storedUser).name);
+            setRole(JSON.parse(storedUser).role);
+            setLoading(false);
+        } else {
+            setLoading(true);
+        }
+    }, []);
     return (
         <div className="flex h-screen w-screen">
             <div className="w-[25%] flex-col flex items-center justify-start px-2 bg-[#fafafa] min-w-[320px]">
@@ -151,11 +165,9 @@ function AdminLayout({ children }) {
                         <div className="h-[30px] w-[1px] bg-[#ebecef] "></div>
                         <div className="flex items-center gap-5">
                             <div className="flex flex-col text-[13px] gap-2">
-                                <h1 className="font-semibold">
-                                    Truong Cong Toan
-                                </h1>
-                                <p className="font-medium text-gray-400 text-end text-[10px]">
-                                    Admin
+                                <h1 className="font-semibold">{userName}</h1>
+                                <p className="font-medium capitalize text-gray-400 text-end text-[10px]">
+                                    {role}
                                 </p>
                             </div>
                             <div className="h-full">

@@ -2,35 +2,35 @@ import api from "../http/api"
 
 
 export const getAllProduct = async (data) => {
-    const res = await api.get('/product',data)
+    const res = await api.get('/product', data)
     return res.data
 }
 
 export const deleteProduct = async (id) => {
     try {
         const res = await api.delete(`/product/delete-product/${id}`)
-    return res.data
+        return res.data
     } catch (error) {
-        console.log('Lỗi khi xóa sản phẩm' , error);
+        console.log('Lỗi khi xóa sản phẩm', error);
     }
 }
 
-export const updateProduct = async (id ,data) => {
+export const updateProduct = async (id, data) => {
     try {
-        const res = await api.put(`/product/update-product/${id}` ,data)
+        const res = await api.put(`/product/update-product/${id}`, data)
         return res.data
     } catch (error) {
-        console.log('Lỗi khi sửa sản phẩm' , error);
-        
+        console.log('Lỗi khi sửa sản phẩm', error);
+
     }
 }
 export const createProduct = async (values) => {
     try {
-        const res = await api.post(`/product/create` , values)
+        const res = await api.post(`/product/create`, values)
         return res
     } catch (error) {
-        console.log('error' , error);
-        
+        console.log('error', error);
+
     }
 }
 
@@ -39,8 +39,8 @@ export const softDeleteProduct = async (id) => {
         const res = await api.put(`/product/soft-delete/${id}`)
         return res.data
     } catch (error) {
-        console.log('Xóa mềm lỗi :  ' ,error);
-        
+        console.log('Xóa mềm lỗi :  ', error);
+
     }
 }
 
@@ -65,10 +65,24 @@ export const restoreProduct = async (id) => {
 }
 export const getProductsByCategory = async (categoryName) => {
     try {
-        const res = await api.get (`product/category/${categoryName}`)
+        const res = await api.get(`product/category/${categoryName}`)
         return res.data
     } catch (error) {
-        console.log('Lỗi khi get sản phẩm' , error);
+        console.log('Lỗi khi get sản phẩm', error);
         throw error
     }
 }
+
+export const getCategoryByIndex = async (index) => {
+    try {
+        const response = await api.get('/category/');
+
+        const categories = response.data;
+        console.log('categories', categories[index].name);
+
+        return categories[index].name;
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+        throw error;
+    }
+};
