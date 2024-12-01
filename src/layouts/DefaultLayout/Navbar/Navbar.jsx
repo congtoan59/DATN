@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import LogoHeader from '../../../../public/image/LogoAll/LogoHeader22.png';
-import { useSelector } from 'react-redux';
 import { User, SearchIcon, CartIcon, Heart } from '../../../component/icons';
 
 function NavBar() {
     const navigate = useNavigate();
     const [userName, setUserName] = useState(null);
     const [loading, setLoading] = useState(true);
-    const decodedUser = useSelector((state) => state.auth.decodedUser);
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -21,8 +19,14 @@ function NavBar() {
     };
 
     useEffect(() => {
-        if (decodedUser) setLoading(false);
-    }, [decodedUser]);
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUserName(JSON.parse(storedUser).name);
+            setLoading(false);
+        } else {
+            setLoading(true);
+        }
+    }, []);
 
     return (
         <div className="bg-black flex justify-between items-center h-[80px]">
@@ -77,7 +81,7 @@ function NavBar() {
                     </Link>
                 </div>
                 <div>
-                    <Link>
+                    <Link to={'/cart'}>
                         <CartIcon />
                     </Link>
                 </div>
@@ -87,13 +91,13 @@ function NavBar() {
                         <Link to={'/sign-in'}>
                             <User />
                         </Link>
-                    ) : decodedUser ? (
+                    ) : userName ? (
                         <div
                             className="cursor-pointer"
                             onMouseEnter={toggleDropdown}
                             onMouseLeave={closeDropdown}
                         >
-                            <span>Xin chào, {decodedUser.name}</span>
+                            <span>Xin chào, {userName}</span>
                             {isDropdownOpen && (
                                 <div className="absolute right-0 w-32 bg-white border rounded shadow-lg z-[999] p-[10px] flex flex-col gap-3">
                                     <Link
@@ -105,6 +109,13 @@ function NavBar() {
                                     </Link>
                                     <p
                                         onClick={() => {
+                                            localStorage.removeItem(
+                                                'accessToken',
+                                            );
+                                            localStorage.removeItem(
+                                                'refreshToken',
+                                            );
+                                            localStorage.removeItem('user');
                                             closeDropdown();
                                             navigate('/sign-in');
                                         }}

@@ -127,6 +127,9 @@ const AddProduct = () => {
             if (response.status === 'OK') {
                 toast.success('Tạo sản phẩm thành công');
                 navigate('/system/admin/products');
+            }
+            else if (response.message === 'Sản phẩm đã tồn tại') {
+                toast.error('Sản phẩm đã tồn tại!');
             } else {
                 toast.error(response.message);
             }

@@ -7,6 +7,8 @@ import ContentProductDetail from './components/ContentProductDetail';
 import ImageWithFallback from '../../component/img/ImageWithFallback';
 import { Right, Left, Evaluation } from '../../component/icons';
 import Banner from '../../component/banner/Banner';
+import { toast } from 'react-toastify';
+import * as CartService from '../../service/CartService';
 function ProductDetail() {
     const { id } = useParams();
     const [error, setError] = useState('');
@@ -59,16 +61,48 @@ function ProductDetail() {
         );
     };
 
-    const handleAddToCart = () => {
-        const cartItem = {
-            productId: product.id,
-            name: product.name,
-            price: product.price,
-            size: selectedSize,
-            quantity: quantity,
-        };
+    const handleAddToCart = async () => {
+        const token = localStorage.getItem('accessToken');
+        if (!token) {
+            toast.error('Bạn cần đăng nhập để thêm vào giỏ hàng!');
+            return;
+        }
+        try {
+            // Định nghĩa dữ liệu truyền đi
+            const cartData = {
+                productId: product._id,
+                size: selectedSize,
+                quantity,
+                name: product.name,
+                price: product.price,
+                image: product.imageUrls[0]?.url,
+            };
 
-        console.log('Sản phẩm đã được thêm vào giỏ hàng:', cartItem);
+            const response = await CartService.addToCart(cartData);
+            toast.success('Đã thêm vào giỏ hàng!');
+            console.log(response);
+        } catch (error) {
+            toast.error(error.response?.data?.message || 'Không thể thêm vào giỏ hàng!');
+            console.error(error);
+        }
+
+        // const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // const existingItem = cart.find((cartItem) => cartItem.id === item.id);
+
+        // if (existingItem) {
+        //     existingItem.quantity += 1;
+        // } else {
+        //     cart.push({
+        //         id: item.id,
+        //         name: item.name,
+        //         price: item.price, // Giá sau giảm
+        //         quantity: 1,
+        //         image: item.imageUrls[0].url,
+        //     });
+        // }
+
+        // localStorage.setItem('cart', JSON.stringify(cart));
+        // toast.success('Đã thêm vào giỏ hàng!!');
     };
 
     if (loading) {
@@ -167,7 +201,7 @@ function ProductDetail() {
                         <div className="flex gap-4">
                             {['S', 'M', 'L', 'XL'].map((size) => (
                                 <button
-                                    key={size}
+                                    key={size.id}
                                     className={`px-4 py-2 rounded-xl border ${
                                         selectedSize === size
                                             ? 'border-[#942319] text-[#942319]'
@@ -202,7 +236,7 @@ function ProductDetail() {
                             </div>
                             <div className="flex gap-2">
                                 <ButtonDetail
-                                    onClick={handleAddToCart}
+                                    onClick={() => handleAddToCart()}
                                     title="Thêm vào giỏ hàng"
                                 />
                                 <ButtonDetail title="Mua hàng" />
