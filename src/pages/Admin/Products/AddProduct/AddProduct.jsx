@@ -218,6 +218,8 @@ const AddProduct = () => {
                                 name="countInStock"
                                 placeholder={'Nhập số lượng sản phẩm ...'}
                                 value={formData.countInStock}
+                                type="number"
+                                min="1"
                                 require
                             />
                         </div>
@@ -248,7 +250,7 @@ const AddProduct = () => {
                                 }
                                 name="description"
                                 id="description"
-                                className="border-custom px-4 py-3 text-[14px] text-primaryAdmin placeholder:font-semibold font-semibold rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-200 bg-white"
+                                className="border-solid border-2 border-black-600 px-4 py-3 text-[14px] text-primaryAdmin placeholder:font-semibold font-semibold rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-200 bg-white"
                                 placeholder="Nhập mô tả sản phẩm ..."
                             ></textarea>
                         </div>

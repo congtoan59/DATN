@@ -25,6 +25,10 @@ import ListProduct from '../pages/Admin/Products/ListProduct/ListProduct';
 import EditProduct from '../pages/Admin/Products/EditProduct/EditProduct';
 import AddProduct from '../pages/Admin/Products/AddProduct/AddProduct';
 import SoftDelete from '../pages/Admin/Products/SoftDelete/SoftDelete';
+import AddCategory from '../pages/Admin/Category/AddCategory/AddCategory';
+import EditCategory from '../pages/Admin/Category/EditCategory/EditCategory';
+import ListCategory from '../pages/Admin/Category/ListCategory/ListCategory';
+import SoftDeleteCategory from '../pages/Admin/Category/SoftDeleteCategory/SoftDeleteCategory';
 
 
 
@@ -55,6 +59,13 @@ const routerPrivate = [
     { path: `/system/admin/products/edit/:id`, element: EditProduct },
     { path: `/system/admin/products/add-product`, element: AddProduct },
     { path: `/system/admin/products/trash-product`, element: SoftDelete },
+    { path: '/system/admin/category', element: ListCategory },
+    { path: `/system/admin/category/edit/:id`, element: EditCategory },
+    { path: `/system/admin/category/add-category`, element: AddCategory },
+    {
+        path: `/system/admin/category/trash-category`,
+        element: SoftDeleteCategory,
+    },
 ];
 
 export { routerPulic, routerPrivate };

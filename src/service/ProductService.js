@@ -1,5 +1,4 @@
-import api from "../http/api"
-
+import api from '../http/api';
 
 export const getAllProduct = async (data) => {
     const res = await api.get('/product', data)
@@ -13,7 +12,7 @@ export const deleteProduct = async (id) => {
     } catch (error) {
         console.log('Lỗi khi xóa sản phẩm', error);
     }
-}
+};
 
 export const updateProduct = async (id, data) => {
     try {
@@ -21,9 +20,8 @@ export const updateProduct = async (id, data) => {
         return res.data
     } catch (error) {
         console.log('Lỗi khi sửa sản phẩm', error);
-
     }
-}
+};
 export const createProduct = async (values) => {
     try {
         const res = await api.post(`/product/create`, values)
@@ -32,17 +30,16 @@ export const createProduct = async (values) => {
         console.log('error', error);
 
     }
-}
+};
 
 export const softDeleteProduct = async (id) => {
     try {
-        const res = await api.put(`/product/soft-delete/${id}`)
-        return res.data
+        const res = await api.put(`/product/soft-delete/${id}`);
+        return res.data;
     } catch (error) {
         console.log('Xóa mềm lỗi :  ', error);
-
     }
-}
+};
 
 export const getDeletedProducts = async () => {
     try {
@@ -52,7 +49,7 @@ export const getDeletedProducts = async () => {
         console.log('Lỗi khi lấy danh sách sản phẩm đã xóa', error);
         throw error;
     }
-}
+};
 
 export const restoreProduct = async (id) => {
     try {
@@ -62,7 +59,7 @@ export const restoreProduct = async (id) => {
         console.log('Lỗi khi khôi phục sản phẩm', error);
         throw error;
     }
-}
+};
 export const getProductsByCategory = async (categoryName) => {
     try {
         const res = await api.get(`product/category/${categoryName}`)

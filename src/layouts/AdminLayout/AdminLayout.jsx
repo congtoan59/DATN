@@ -43,40 +43,40 @@ function AdminLayout({ children }) {
                 <div className="pt-[20px] flex-[0_0_80%] w-full flex justify-start flex-col items-center overflow-y-auto customScroll">
                     <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
                         <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
-                            Account
+                            Tài khoản
                         </h1>
                         <div className="flex flex-col gap-7">
-                            <Navigate title={'Overview'}>
+                            <Navigate title={'Tổng quan'}>
                                 <OverView className="!text-[25px]" />
                             </Navigate>
-                            <Navigate title={'Member'}>
+                            <Navigate title={'Thành viên'}>
                                 <Member className="!text-[25px]" />
                             </Navigate>
-                            <Navigate title={'Staff'}>
+                            <Navigate title={'Nhân viên'}>
                                 <Staff className="!text-[25px]" />
                             </Navigate>
                         </div>
                     </div>
                     <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
                         <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
-                            Product
+                            Sản phẩm
                         </h1>
                         <div className="flex flex-col gap-7">
                             <Navigate
-                                to={'/system/admin/products/add-product'}
-                                title={'Add Product'}
-                            >
-                                <AddProduct className="!text-[25px]" />
-                            </Navigate>
-                            <Navigate
                                 to={'/system/admin/products'}
-                                title={'List Product'}
+                                title={'Danh sách sản phẩm'}
                             >
                                 <ListProduct className="!text-[25px]" />
                             </Navigate>
                             <Navigate
+                                to={'/system/admin/products/add-product'}
+                                title={'Thêm sản phẩm'}
+                            >
+                                <AddProduct className="!text-[25px]" />
+                            </Navigate>
+                            <Navigate
                                 to={'/system/admin/products/trash-product'}
-                                title={'Trash'}
+                                title={'Thùng rác'}
                             >
                                 <Trash className="!text-[25px]" />
                             </Navigate>
@@ -84,55 +84,64 @@ function AdminLayout({ children }) {
                     </div>
                     <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
                         <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
-                            Categorie
+                            Danh mục
                         </h1>
                         <div className="flex flex-col gap-7">
-                            <Navigate title={'Add Categorie'}>
-                                <AddCate className="!text-[25px]" />
-                            </Navigate>
-                            <Navigate title={'List Categorie'}>
+                            <Navigate
+                                to={'/system/admin/category'}
+                                title={'Danh sách danh mục'}
+                            >
                                 <ListCate className="!text-[25px]" />
                             </Navigate>
-                            <Navigate title={'Trash'}>
+                            <Navigate
+                                to={'/system/admin/category/add-category'}
+                                title={'Thêm danh mục'}
+                            >
+                                <AddCate className="!text-[25px]" />
+                            </Navigate>
+                            <Navigate
+                                to={'/system/admin/category/trash-category'}
+                                title={'Thùng rác '}
+                            >
                                 <Trash className="!text-[25px]" />
                             </Navigate>
                         </div>
                     </div>
                     <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
                         <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
-                            Order
+                            Đặt hàng
                         </h1>
                         <div className="flex flex-col gap-7">
-                            <Navigate title={'OrderViews'}>
+                            <Navigate title={'Lượt xem đơn hàng'}>
                                 <OverView className="!text-[25px]" />
                             </Navigate>
-                            <Navigate title={'OrderTracking'}>
+                            <Navigate title={'Theo dõi đơn hàng'}>
                                 <CartFollow className="!text-[25px]" />
                             </Navigate>
-                            <Navigate title={'OrderManage'}>
+                            <Navigate title={'Quản lý đơn hàng'}>
                                 <CartIcon className="!text-[25px]" />
                             </Navigate>
                         </div>
                     </div>
                     <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
                         <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
-                            Chart
+                            Biểu đồ
                         </h1>
                         <div className="flex flex-col gap-7">
-                            <Navigate title={'ChartViews'}>
+                            <Navigate title={'Biểu đồ xem'}>
                                 <Chart className="!text-[25px]" />
                             </Navigate>
                         </div>
                     </div>
                     <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
                         <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
-                            Coder
+                            Lập trình viên
                         </h1>
                         <div className="flex flex-col gap-7">
-                            <Navigate title={'ManageWebsite'}>
+                            <Navigate title={'Quản lý trang web'}>
                                 <Web className="!text-[25px]" />
                             </Navigate>
-                            <Navigate title={'Setting'}>
+                            <Navigate title={'Cài đặt'}>
                                 <Setting className="!text-[25px]" />
                             </Navigate>
                         </div>
