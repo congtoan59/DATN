@@ -2,33 +2,48 @@ import * as ProductService from '../../service/ProductService';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CartIcon } from '../icons';
-function ListProduct({ categoryName, cols = 3 }) {
+function ListProduct({ categoryIndex, cols = 3 }) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [hoveredProduct, setHoveredProduct] = useState(null);
+    const [categoryName, setCategoryName] = useState('');
+
+    useEffect(() => {
+        const fetchCategory = async () => {
+            try {
+                const category = await ProductService.getCategoryByIndex(
+                    categoryIndex,
+                );
+                console.log('category', category);
+
+                setCategoryName(category);
+            } catch (error) {
+                console.error('Lỗi lấy category:', error);
+            }
+        };
+
+        fetchCategory();
+    }, [categoryIndex]);
 
     useEffect(() => {
         const fetchProducts = async () => {
-            setLoading(true);
-            try {
-                const res = await ProductService.getProductsByCategory(
-                    categoryName,
-                );
-                console.log(res);
-
-                setProducts(res);
-            } catch (error) {
-                console.log('Lỗi fetch sản phẩm : ', error);
-            } finally {
-                setLoading(false);
+            if (categoryName) {
+                setLoading(true);
+                try {
+                    const res = await ProductService.getProductsByCategory(
+                        categoryName,
+                    );
+                    console.log(res);
+                    setProducts(res);
+                } catch (error) {
+                    console.log('Lỗi fetch sản phẩm : ', error);
+                } finally {
+                    setLoading(false);
+                }
             }
         };
         fetchProducts();
     }, [categoryName]);
-
-    const handleAddToCart = (id) => {
-        console.log('Product ID:', id);
-    };
 
     if (loading) return <p>Loading Products...</p>;
     return (
@@ -73,7 +88,7 @@ function ListProduct({ categoryName, cols = 3 }) {
                             đ
                         </p>
                     </div>
-                    <button
+                    {/* <button
                         className={`absolute top-4 right-0  rounded-full bg-[#000000] text-white flex items-center justify-center w-10 h-10  duration-300 transform ${
                             hoveredProduct === index
                                 ? 'translate-x-0'
@@ -82,7 +97,7 @@ function ListProduct({ categoryName, cols = 3 }) {
                         onClick={() => handleAddToCart(item.id)}
                     >
                         <CartIcon />
-                    </button>
+                    </button> */}
                 </div>
             ))}
         </div>

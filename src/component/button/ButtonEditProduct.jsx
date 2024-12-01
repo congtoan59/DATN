@@ -12,7 +12,7 @@ function ButtonEditProduct({
                 {label}
             </label>
             <input
-                className=" border-[2px] border-black rounded-lg px-3 py-1"
+                className="border-solid border-2 border-black-600 bg-white px-4 py-3 text-[14px] text-primaryAdmin placeholder:font-semibold font-semibold rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-200"
                 type={type}
                 id={id}
                 name={name}

@@ -35,5 +35,10 @@ export { default as Edit } from '@mui/icons-material/EditCalendarRounded';
 export { default as Restart } from '@mui/icons-material/RestartAltRounded';
 
 export { default as Evaluation } from '@mui/icons-material/StarRounded';
+export { default as Payment } from '@mui/icons-material/PaymentsRounded';
+export { default as Check } from '@mui/icons-material/CheckCircleOutlineRounded';
+export { default as BagCart } from '@mui/icons-material/LocalMallOutlined';
+
+
 
 

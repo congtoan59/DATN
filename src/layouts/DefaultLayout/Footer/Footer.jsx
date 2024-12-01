@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom';
+import Logo from '../../../../public/image/LogoAll/LogoHeader22.png';
 function Footer() {
     return (
         <>
             <div className="bg-black text-white py-10 ">
                 <div className="flex justify-around">
                     <div>
-                        <div>
+                        <div className="] ">
                             <img
-                                src="https://bizweb.dktcdn.net/100/446/974/themes/849897/assets/logo_footer.png?1725442106829"
+                                src={Logo}
+                                className="object-cover h-[60px] w-[250px]"
                                 alt=""
                             />
                         </div>
@@ -44,7 +46,7 @@ function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className="flex justify-center gap-4 pt-12">
+                    <div className="flex justify-center gap-10 pt-12">
                         <div>
                             <h3 className="font-bold text-lg mb-4 uppercase">
                                 Hỗ Trợ
@@ -120,22 +122,32 @@ function Footer() {
                                         <i className="fa-brands fa-instagram"></i>
                                     </div>
                                 </li>
-                                <li className='pt-4'>
+                                <li className="pt-4">
                                     <div>
-                                        <span className='text-[0.9rem]'>Đăng Ký để nhận thông tin</span>
+                                        <span className="text-[0.9rem]">
+                                            Đăng Ký để nhận thông tin
+                                        </span>
                                     </div>
-                                    <div className='flex'>
-                                        <input type="text" placeholder='Nhập địa chỉ Email'
-                                        className='w-full p-2 border  focus:outline-none focus:ring-1 focus:ring-black' />
-                                        <button className='bg-[#660000] text-white px-4 py-2  hover:bg-red-700'>Gửi</button>
+                                    <div className="flex">
+                                        <input
+                                            type="text"
+                                            placeholder="Nhập địa chỉ Email"
+                                            className="w-full p-2 border  focus:outline-none focus:ring-1 focus:ring-black"
+                                        />
+                                        <button className="bg-[#660000] text-white px-4 py-2  hover:bg-red-700">
+                                            Gửi
+                                        </button>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div className='text-center text-[0.9rem] border-t border-t-white border-opacity-50 mt-4 pt-4 w-[70%] flex justify-center mx-auto'>
-                    <span>@ Bản quyền thuộc về DATN - FPOLY | Cung cấp bởi DATN WEB</span>
+                <div className="text-center text-[0.9rem] border-t border-t-white border-opacity-50 mt-4 pt-4 w-[70%] flex justify-center mx-auto">
+                    <span>
+                        @ Bản quyền thuộc về DATN - FPOLY | Cung cấp bởi DATN
+                        WEB
+                    </span>
                 </div>
             </div>
         </>

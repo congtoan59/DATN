@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../redux/auth/authSlice';
+
 function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,6 +22,8 @@ function SignIn() {
             toast.success('Đăng nhập thành công!');
             localStorage.setItem('accessToken', res.access_token);
             localStorage.setItem('refreshToken', res.refresh_token);
+
+            localStorage.setItem('user', JSON.stringify(res.decodedUser));
             navigate('/');
         } catch (error) {
             toast.error(error.message || 'Đăng nhập không thành công!');

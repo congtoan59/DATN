@@ -2,7 +2,7 @@ import ListProduct from '../../../../component/listProduct/ListProduct';
 function ProductBags() {
     return (
         <>
-            <ListProduct categoryName={'Backpack'} cols={4} />
+            <ListProduct categoryIndex={[1]} cols={'3'} />
         </>
     );
 }

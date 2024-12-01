@@ -6,6 +6,7 @@ import { routerPulic, routerPrivate } from './routes';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TitleUpdate from './component/TitleUpdate/TitleUpdate';
+import { PrivateRoute } from './component/Private/PrivateRoute';
 function App() {
     return (
         <>
@@ -30,13 +31,9 @@ function App() {
                                 key={index}
                                 path={route.path}
                                 element={
-                                    // <PrivateRoute
-                                    //     allowedRoles={['admin', 'manager']}
-                                    // >
                                     <Layout>
                                         <Page />
                                     </Layout>
-                                    // </PrivateRoute>
                                 }
                             />
                         );
@@ -60,15 +57,29 @@ function App() {
                                 key={index}
                                 path={route.path}
                                 element={
-                                    <Layout>
-                                        <Page />
-                                    </Layout>
+                                    <PrivateRoute
+                                        allowedRoles={['admin', 'manager']}
+                                    >
+                                        <Layout>
+                                            <Page />
+                                        </Layout>
+                                    </PrivateRoute>
                                 }
                             />
                         );
                     })}
                 </Routes>
-                <ToastContainer />
+                <ToastContainer
+                    position="top-right"
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
             </Router>
         </>
     );
