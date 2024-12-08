@@ -43,13 +43,23 @@ function AdminLayout({ children }) {
                 <div className="pt-[20px] flex-[0_0_80%] w-full flex justify-start flex-col items-center overflow-y-auto customScroll">
                     <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
                         <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
+                            ADMIN
+                        </h1>
+                        <div className="flex flex-col gap-7">
+                            <Navigate to={'/system/admin/'} title={'Tổng quan'}>
+                                <OverView className="!text-[25px]" />
+                            </Navigate>
+                        </div>
+                    </div>
+                    <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
+                        <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
                             Tài khoản
                         </h1>
                         <div className="flex flex-col gap-7">
-                            <Navigate title={'Tổng quan'}>
-                                <OverView className="!text-[25px]" />
-                            </Navigate>
-                            <Navigate title={'Thành viên'}>
+                            <Navigate
+                                to={'/system/admin/user'}
+                                title={'Người dùng'}
+                            >
                                 <Member className="!text-[25px]" />
                             </Navigate>
                             <Navigate title={'Nhân viên'}>
@@ -112,7 +122,10 @@ function AdminLayout({ children }) {
                             Đặt hàng
                         </h1>
                         <div className="flex flex-col gap-7">
-                            <Navigate title={'Lượt xem đơn hàng'}>
+                            <Navigate
+                                to={'/system/admin/order'}
+                                title={'Lượt xem đơn hàng'}
+                            >
                                 <OverView className="!text-[25px]" />
                             </Navigate>
                             <Navigate title={'Theo dõi đơn hàng'}>

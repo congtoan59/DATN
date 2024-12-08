@@ -21,6 +21,7 @@ import OrderSuccess from '../pages/Order/OrderSuccess';
 import OrderDetails from '../pages/OrderDetails/OrderDetails';
 // Private
 import Home2 from '../pages/Home2/Home2';
+import Overview from '../pages/Admin/Overview/Overview';
 import ListProduct from '../pages/Admin/Products/ListProduct/ListProduct';
 import EditProduct from '../pages/Admin/Products/EditProduct/EditProduct';
 import AddProduct from '../pages/Admin/Products/AddProduct/AddProduct';
@@ -29,6 +30,8 @@ import AddCategory from '../pages/Admin/Category/AddCategory/AddCategory';
 import EditCategory from '../pages/Admin/Category/EditCategory/EditCategory';
 import ListCategory from '../pages/Admin/Category/ListCategory/ListCategory';
 import SoftDeleteCategory from '../pages/Admin/Category/SoftDeleteCategory/SoftDeleteCategory';
+import UserManage from '../pages/Admin/UserManage/UserManage';
+import OrderManage from '../pages/Admin/OrderManage/OrderManage';
 
 
 
@@ -54,7 +57,7 @@ const routerPulic = [
 ];
 
 const routerPrivate = [
-    { path: '/system/admin', element: Home2 },
+    { path: '/system/admin/', element: Overview },
     { path: '/system/admin/products', element: ListProduct },
     { path: `/system/admin/products/edit/:id`, element: EditProduct },
     { path: `/system/admin/products/add-product`, element: AddProduct },
@@ -66,6 +69,8 @@ const routerPrivate = [
         path: `/system/admin/category/trash-category`,
         element: SoftDeleteCategory,
     },
+    { path: `/system/admin/user`, element: UserManage },
+    { path: `/system/admin/order`, element: OrderManage },
 ];
 
 export { routerPulic, routerPrivate };
