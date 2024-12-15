@@ -114,7 +114,7 @@ function ListProduct() {
                     </span>
                     <ArrowRight className="!text-[13px] flex !justify-center !items-center !h-6 !text-[#3e465b]" />
                     <span className="hover:underline cursor-pointer">
-                        Thêm sản phẩm
+                        Danh sách sản phẩm
                     </span>
                 </div>
                 <div className="text-[40px] font-bold tracking-wider mb-8">
@@ -204,7 +204,7 @@ function ListProduct() {
                             </div>
                         </div>
                     </div>
-                    <div className=""></div>
+                    
                 </div>
             </div>
 
