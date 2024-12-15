@@ -138,6 +138,25 @@ function AdminLayout({ children }) {
                     </div>
                     <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
                         <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
+                            Voucher
+                        </h1>
+                        <div className="flex flex-col gap-7">
+                            <Navigate
+                                to={'/system/admin/voucher'}
+                                title={'Quản lý voucher'}
+                            >
+                                <Chart className="!text-[25px]" />
+                            </Navigate>
+                            <Navigate
+                                to={'/system/admin/add-voucher'}
+                                title={'Thêm voucher'}
+                            >
+                                <Chart className="!text-[25px]" />
+                            </Navigate>
+                        </div>
+                    </div>
+                    <div className="w-full px-5 mb-7 pb-5 border-b-[1.5px] border-[#e3e6e8]">
+                        <h1 className="uppercase font-semibold text-black text-[14px] mb-7">
                             Biểu đồ
                         </h1>
                         <div className="flex flex-col gap-7">

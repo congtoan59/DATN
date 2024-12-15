@@ -32,6 +32,9 @@ import ListCategory from '../pages/Admin/Category/ListCategory/ListCategory';
 import SoftDeleteCategory from '../pages/Admin/Category/SoftDeleteCategory/SoftDeleteCategory';
 import UserManage from '../pages/Admin/UserManage/UserManage';
 import OrderManage from '../pages/Admin/OrderManage/OrderManage';
+import AddVoucher from '../pages/Admin/Voucher/AddVoucher/AddVoucher';
+import ListVoucher from '../pages/Admin/Voucher/ListVoucher/ListVoucher';
+import EditVoucher from '../pages/Admin/Voucher/EditVoucher/EditVoucher';
 
 
 
@@ -71,6 +74,8 @@ const routerPrivate = [
     },
     { path: `/system/admin/user`, element: UserManage },
     { path: `/system/admin/order`, element: OrderManage },
+    { path: `/system/admin/voucher`, element: ListVoucher },
+    { path: `/system/admin/add-voucher`, element: AddVoucher },
 ];
 
 export { routerPulic, routerPrivate };

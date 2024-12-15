@@ -26,12 +26,12 @@ const Select = ({
                 name={name}
                 required={require}
                 onChange={onChange}
+
                 defaultValue={defaultValue}
                 className="border-solid border-2 border-black-600 w-full h-11 px-4 py-3 text-[14px] text-primaryAdmin
                      bg-white border-custom rounded-lg
                      placeholder:font-semibold font-semibold
-                     hover:border-gray-300
-                     focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-200
+                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
                      appearance-none cursor-pointer
                      transition-all"
                 style={{
